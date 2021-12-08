@@ -1,1 +1,1 @@
-docker push igorsouzadocker/go-code-hello
+docker pull igorsouzadocker/hello-golang

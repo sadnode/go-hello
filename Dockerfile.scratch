@@ -1,11 +1,12 @@
-# Iniciando uma imagem base golang:alpine
+
 FROM golang:alpine AS builder
 
-# criando diretório de trabalho
 WORKDIR /src
-
-# Copiando o app
 COPY . .
-
-# Compilando o binário removendo informações de debug
 RUN go build -ldflags '-s -w' main.go
+
+FROM scratch
+
+WORKDIR /
+COPY --from=builder /src / 
+CMD ["./main"]
